@@ -1,11 +1,542 @@
-<!DOCTYPE html>
+
 <!DOCTYPE html>
 <html>
   <head>
+    <!--
+
+
+    Wanna play a game?
+        \        __
+                (  )
+              ( o  o )
+            (    __    )
+          (______________)
+
+
+    -->
+    <link href='https://fonts.googleapis.com/css?family=Work+Sans:600' rel='stylesheet' type='text/css'>
     <meta charset="utf-8">
-    <title>Parades</title>
+    <title>Parades 💅</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="description" content="The emoji game worth wasting time on. You’ll hate yourself.">
+    <meta name="viewport" content="initial-scale=0.55">
+    <style media="screen">
+      @keyframes rainbow {
+        0%, 100% { background-color: #FFE237; }
+        12.5%    { background-color: #F65C75; }
+        25%      { background-color: #0075CB; }
+        37.5%    { background-color: #369800; }
+        50%      { background-color: #6C2FB6; }
+        62.5%    { background-color: #B15514; }
+        75%      { background-color: #F61800; }
+        87.5%    { background-color: #FF590F; }
+      }
+      @keyframes rainbow_tw {
+        0%, 100% { background-color: #FFE237; }
+        12.5%    { background-color: #F65C75; }
+        25%      { background-color: #0075CB; }
+        37.5%    { background-color: #369800; }
+        50%      { background-color: #6C2FB6; }
+        62.5%    { background-color: #B15514; }
+        75%      { background-color: #F61800; }
+        87.5%    { background-color: #FF590F; }
+      }
+      * {
+        box-sizing:border-box;
+      }
+      body {
+        background:#000;
+        color:#fff;
+      }
+      h1 {
+        font-family:'Work Sans', sans-serif;
+        font-size:84px;
+        font-weight:bold;
+        line-height:0.25em;
+        margin-top:0.75em;
+        text-align:center;
+      }
+      h2 {
+        font-family:'Work Sans', sans-serif;
+        font-size:60px;
+        font-weight:bold;
+        line-height:1.1em;
+        margin:0 auto 0.5em auto;
+        max-width:33ex;
+        text-align:center;
+      }
+      p {
+        font-family:'Work Sans', sans-serif;
+        font-size:28px;
+        font-weight:bold;
+        line-height:1.25em;
+        margin:0 auto 1em auto;
+        max-width:66ex;
+      }
+      .assets {
+        min-width:1200px;
+      }
+      .b-city {
+        background:transparent url("img/b-city.png");
+        background-position: bottom 0px;
+        background-repeat: repeat-x;
+        background-size:1320px 300px;
+        height:300px;
+        left:0;
+        position:absolute;
+        top:60px;
+        width:100%;
+        z-index:1;
+        -webkit-transform: translate3d(0,0,0);
+      }
+      .b-factorystacks {
+        background-color:transparent;
+        background-image:url("img/b-factorystacks.png");
+        background-position:left top;
+        background-repeat:no-repeat;
+        background-size:417px 360px;
+        height:360px;
+        left:0;
+        position:absolute;
+        top:0;
+        width:417px;
+        z-index:0;
+      }
+      .b-sidewalk {
+        background-color:transparent;
+        background-image:url("img/b-sidewalk.png");
+        background-position:left top;
+        background-repeat:repeat-x;
+        background-size:450px;
+        height:250px;
+        left:0;
+        position:absolute;
+        top:500px;
+        width:100%;
+        z-index:0;
+      }
+      .b-sky {
+        background-blend-mode:screen;
+        background-color:transparent;
+        background-image:url("img/b-sky.png"), url("img/g-smoke.gif"), url("img/g-smoke.gif"), url("img/g-smoke.gif"), url("img/g-smoke.gif");
+        background-position:left top, 214px -10px, 319px -10px, 423px -10px, 526px -10px;
+        background-repeat:repeat-x, no-repeat, no-repeat, no-repeat, no-repeat;
+        background-size:500px 385px, 95px 120px, 95px 120px, 95px 120px, 95px 120px;
+        height:345px;
+        left:0;
+        position:absolute;
+        top:0;
+        width:100%;
+        z-index:0;
+        -webkit-transform: translate3d(0,0,0);
+      }
+      .b-street {
+        background-color:transparent;
+        background-image:url("img/b-street.png");
+        background-position:left top;
+        background-size:300px;
+        height:200px;
+        left:0;
+        position:absolute;
+        top:350px;
+        width:100%;
+        z-index:0;
+      }
+      .button {
+        background-color:#ffe237;
+        border:0;
+        cursor:pointer;
+        display:block;
+        font-family:'Work Sans', sans-serif;
+        font-size:28px;
+        font-weight:bold;
+        margin:10px auto;
+        max-width:65ex;
+        padding:20px;
+        width:100%;
+        -webkit-appearance:none;
+      }
+      .button:hover {
+        animation:rainbow 0.5s infinite;
+      }
+      .content {
+        background:rgba(0,0,0,0.8);
+        margin:0 50px;
+        padding:1px 50px 50px 50px;
+      }
+      .email {
+        display:block;
+        font-family:'Work Sans', sans-serif;
+        font-size:28px;
+        font-weight:bold;
+        margin:10px auto;
+        max-width:65ex;
+        padding:20px;
+        width:100%;
+      }
+      .emoji {
+        font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight:normal;
+        margin-top:100px;
+        transform:scale(2.5);
+        -webkit-transform:scale(2.5);
+      }
+      .f-pills {
+        background-image:url("img/f-pills.png");
+        background-size:100px;
+        height:50px;
+        left:-500px;
+        position:absolute;
+        top:490px;
+        width:100px;
+      }
+      .f-pizza {
+        background-image:url("img/f-pizza.png");
+        background-size:200px;
+        height:200px;
+        left:-1000px;
+        position:absolute;
+        top:470px;
+        width:200px;
+      }
+      .f-hammer {
+        background-image:url("img/f-hammer.png");
+        background-size:300px;
+        height:136px;
+        left:-2000px;
+        position:absolute;
+        top:650px;
+        width:300px;
+      }
+      .i-twitter {
+        display:block;
+        margin:50px auto;
+        width:50px;
+      }
+      .i-twitter img {
+        width:100%;
+      }
+      .i-twitter:hover path {
+        fill:#FFE237;
+      }
+      .i-poop {
+        display:block;
+        margin:50px auto;
+        max-width:250px;
+        width:100%;
+      }
+      .loading {
+        left:0;
+        position:absolute;
+        text-align:center;
+        top:100px;
+        width:100%;
+        z-index:1;
+      }
+      .s-bunny {
+        background-image:url("img/s-bunny.png");
+        background-size:1980px;
+        height:408px;
+        margin-top:0px;
+        width:198px;
+      }
+      .s-bunny-twin {
+        margin-left:-40px;
+      }
+      .s-cat {
+        background-image:url("img/s-cat.png");
+        background-size:1633.333333333px;
+        height:188px;
+        margin-top:220px;
+        width:163px;
+      }
+      .s-char {
+        float:left;
+        position:relative;
+        z-index:2;
+        -webkit-transform: translate3d(0,0,0);
+      }
+      .s-ghost {
+        background-image:url("img/s-ghost.png");
+        background-size:1309px;
+        height:217px;
+        opacity:0.9;
+        margin-left:-30px;
+        margin-top:110px;
+        width:218px;
+      }
+      .s-poop {
+        background-image:url("img/s-poop.png");
+        background-size:1750px;
+        height:334px;
+        margin-top:90px;
+        width:250px;
+      }
+      .s-octopus {
+        background-image:url("img/s-octopus.png");
+        background-size:2187.5px;
+        height:157px;
+        margin-left:-110px;
+        margin-top:260px;
+        width:312.5px;
+      }
+      .w-assets {
+        height:100%;
+        left:0;
+        overflow-x:auto;
+        overflow-y:hidden;
+        position:absolute;
+        top:0;
+        visibility:hidden;
+        width:100%;
+        z-index:3;
+      }
+      .w-assets::-webkit-scrollbar {
+        display: none;
+      }
+      .w-content {
+        left:0;
+        overflow:hidden;
+        position:absolute;
+        top:550px;
+        visibility:hidden;
+        width:100%;
+        z-index:3;
+      }
+      .w-factorystacks {
+        height:360px;
+        left:0;
+        overflow:hidden;
+        position:absolute;
+        top:-10px;
+        width:100%;
+      }
+      .w-foreground {
+        height:100%;
+        left:0;
+        overflow:hidden;
+        position:absolute;
+        top:0;
+        width:100%;
+      }
+    </style>
   </head>
   <body>
-    <h1>Welcome to Parades!</h1>
+    <div class="w-assets">
+      <div class="assets">
+        <div class="b-street"></div>
+        <div class="b-sidewalk"></div>
+        <div class="b-sky"></div>
+        <div class="w-factorystacks"><div class="b-factorystacks"></div></div>
+        <div class="b-city"></div>
+        <!-- <div class="g-smoke"></div> -->
+        <div class="s-char s-poop"></div>
+        <div class="s-char s-ghost"></div>
+        <div class="s-char s-octopus"></div>
+        <div class="s-char s-bunny"></div>
+        <div class="s-char s-bunny s-bunny-twin"></div>
+        <div class="s-char s-cat"></div>
+        <div class="w-foreground">
+          <div class="f-pills"></div>
+          <div class="f-hammer"></div>
+          <div class="f-pizza"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loading">
+      <p>Loading...</p>
+      <p class="emoji">
+        <span class="load-icon">💩</span><!--
+     --><span class="load-icon">👻</span><!--
+     --><span class="load-icon">🐙</span><!--
+     --><span class="load-icon">👯</span><!--
+     --><span class="load-icon">😻</span>
+      </p>
+    </div>
+
+    <div class="w-content">
+      <div class="content">
+        <h1>Parades</h1>
+        <h2>The emoji game worth wasting time on. You’ll hate yourself.</h2>
+        <p>The Japanese have given us so much. Sushi. Seizure-inducing children’s cartoons. Tentacle porn.</p>
+        <p>Best of all, they have given us emoji.</p>
+        <p>Parades lets you use brightly colored pictures of poo and polished nails to play a stupid game. Invite friends, ex-lovers, or your one weird aunt to make the best emoji versions of common American phrases. Play phrases like “Murder-suicide pact”, “Dumpster diving”, “Twerking” and “Cultural appropriation”.</p>
+        <p>Parades is the second most fun you could ever have with your iPhone. Playing it is a waste of time. You’ll hate yourself.</p>
+
+        <img src="img/i-poop.svg" class="i-poop" alt="Duke Dook, the Prince of Poo, holding an iPhone.">
+
+        <p>Want to be the first to give us all your money? Put your email address in this box and we’ll tell you when Parades is ready to play.</p>
+
+
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+        <form action="//wtf.us11.list-manage.com/subscribe/post?u=6042d215e2f571d51142184a0&amp;id=876d820eae" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+
+        <div class="mc-field-group">
+        	<label for="mce-EMAIL" style="position: absolute; left: -5000px;">Email address </label>
+        	<input type="email" value="" name="EMAIL" class="required email" placeholder="Email address" id="mce-EMAIL">
+        </div>
+        	<div id="mce-responses" class="clear">
+        		<div class="response" id="mce-error-response" style="display:none"></div>
+        		<div class="response" id="mce-success-response" style="display:none"></div>
+        	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;"><input type="text" name="b_6042d215e2f571d51142184a0_876d820eae" tabindex="-1" value=""></div>
+            <div class="clear"><input type="submit" value="Let’s do this." name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+        </form>
+        </div>
+        <!--End mc_embed_signup-->
+
+        <a href="https://twitter.com/paradeswtf" class="i-twitter"><img src="img/i-twitter.svg" alt="Twitter"></a>
+      </div>
+    </div>
   </body>
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+
+    var background_x = 200;
+    var midground_x = 200;
+    var foreground_x = 200;
+    var b_city = $(".b-city");
+    var b_factorystacks = $(".b-factorystacks");
+    var b_sidewalk = $(".b-sidewalk");
+    var b_sky = $(".b-sky");
+    var b_street = $(".b-street");
+    var f_pills = $(".f-pills");
+    var f_pizza = $(".f-pizza");
+    var f_hammer = $(".f-hammer");
+    var loader;
+    var w_assets = $(".w-assets");
+    var w_content = $(".w-content");
+    var w_foreground = $(".w-foreground");
+    var w_factorystacks = $(".w-factorystacks");
+
+    function loadIndicator() {
+      var load_icons = $(".load-icon");
+      var index = 0;
+      loader = setInterval(function() {
+        if(index >= load_icons.length) {
+          index = 0;
+        }
+        $(load_icons).css("opacity", 1.0);
+        $(load_icons[index]).css("opacity", 0.3);
+        index++;
+      }, 300);
+    }
+    loadIndicator();
+
+    function sequence(char, count) {
+      var idx = 0;
+      var angle = 0;
+      var speed = 0.5;
+      var s_char = $(".s-" + char);
+      var charTop = parseInt(s_char.css("margin-top"));
+      setInterval(function() {
+        s_char.css("background-position", idx * s_char.width() + "px 0");
+        if(char == "ghost") {
+          s_char.css("margin-top", Math.sin(angle) * 15 + charTop);
+          angle += speed;
+        }
+        idx++;
+        if(idx >= count) {
+          idx = 0;
+        }
+      }, 150);
+    }
+
+    function backgroundLoop() {
+      setInterval(function() {
+        b_city.css("background-position", midground_x);
+
+        midground_x += 2;
+        foreground_x += 4;
+
+        b_factorystacks.css("left", background_x);
+        b_street.css("background-position", midground_x);
+
+        b_sidewalk.css("background-position", foreground_x);
+        f_pills.css("left", foreground_x - 1000);
+        f_hammer.css("left", foreground_x - 2000);
+        f_pizza.css("left", foreground_x - 500);
+
+        var g_smoke_x = background_x + 12;
+
+        b_sky.css("background-position", "left top, " + g_smoke_x + "px -10px, " + (g_smoke_x + 105) + "px -10px, " + (g_smoke_x + 105 * 2) + "px -10px, " + (g_smoke_x + 105 * 3) + "px -10px");
+
+        background_x += 1;
+        if(background_x >= $(".assets").width()) {
+          background_x = -b_factorystacks.width();
+        }
+
+      }, 1000/15);
+    }
+
+    $(window).resize(function() {
+      var doc_width = $(window).width();
+
+      w_assets.css("width", doc_width);
+
+      var assets_width = $(".assets").width();
+
+      b_city.css("width", assets_width);
+      b_sidewalk.css("width", assets_width);
+      b_sky.css("width", assets_width);
+      b_street.css("width", assets_width);
+
+      w_factorystacks.css("width", assets_width);
+      w_foreground.css("width", assets_width);
+    });
+    $(window).resize();
+
+    $(window).load(function(evt) {
+
+      sequence("poop", 7);
+      sequence("ghost", 6);
+      sequence("octopus", 7);
+      sequence("bunny", 10);
+      sequence("cat", 10);
+
+      backgroundLoop();
+
+      clearInterval(loader);
+      $(".loading").hide();
+
+      $(".w-assets").css("visibility", "visible");
+      $(".w-content").css("visibility", "visible");
+    });
+
+    $('.i-twitter img').each(function(){
+        var $img = $(this);
+        var imgID = $img.attr('id');
+        var imgClass = $img.attr('class');
+        var imgURL = $img.attr('src');
+
+        $.get(imgURL, function(data) {
+            // Get the SVG tag, ignore the rest
+            var $svg = $(data).find('svg');
+
+            // Add replaced image's ID to the new SVG
+            if(typeof imgID !== 'undefined') {
+                $svg = $svg.attr('id', imgID);
+            }
+            // Add replaced image's classes to the new SVG
+            if(typeof imgClass !== 'undefined') {
+                $svg = $svg.attr('class', imgClass+' replaced-svg');
+            }
+
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a');
+
+            // Replace image with new SVG
+            $img.replaceWith($svg);
+
+        }, 'xml');
+    });
+  });
+  </script>
 </html>
